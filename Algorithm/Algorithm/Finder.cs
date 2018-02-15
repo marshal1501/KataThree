@@ -5,22 +5,40 @@ namespace Algorithm
     public class Finder
     {
         private readonly List<Person> _people;
+        private readonly IDictionary<AgeDifference, ISorter> _sortingStrategies;
 
         public Finder(List<Person> people)
         {
             _people = people;
+            _sortingStrategies = new Dictionary<AgeDifference, ISorter>
+            {
+                {AgeDifference.Closest, new ClosestPairPicker()},
+                {AgeDifference.Furthest, new FurthestPairPicker()}
+            };
         }
 
         public Pair Find(AgeDifference ageDifference)
         {
+            var listOfPairs = GenerateListOfAllPossiblePairsFromPeople();
+
+            if (listOfPairs.Count < 1)
+            {
+                return new Pair();
+            }
+
+            return _sortingStrategies[ageDifference].ReturnDesiredPair(listOfPairs);
+        }
+
+        private List<Pair> GenerateListOfAllPossiblePairsFromPeople()
+        {
             var listOfPairs = new List<Pair>();
 
-            for(var i = 0; i < _people.Count - 1; i++)
+            for (var i = 0; i < _people.Count - 1; i++)
             {
-                for(var j = i + 1; j < _people.Count; j++)
+                for (var j = i + 1; j < _people.Count; j++)
                 {
                     var pair = new Pair();
-                    if(_people[i].BirthDate < _people[j].BirthDate)
+                    if (_people[i].BirthDate < _people[j].BirthDate)
                     {
                         pair.YoungerPerson = _people[i];
                         pair.OlderPerson = _people[j];
@@ -30,38 +48,13 @@ namespace Algorithm
                         pair.YoungerPerson = _people[j];
                         pair.OlderPerson = _people[i];
                     }
+
                     pair.AgeDifference = pair.OlderPerson.BirthDate - pair.YoungerPerson.BirthDate;
                     listOfPairs.Add(pair);
                 }
             }
 
-            if(listOfPairs.Count < 1)
-            {
-                return new Pair();
-            }
-
-            Pair thePair = listOfPairs[0];
-            foreach(var pair in listOfPairs)
-            {
-                switch(ageDifference)
-                {
-                    case AgeDifference.Closest:
-                        if(pair.AgeDifference < thePair.AgeDifference)
-                        {
-                            thePair = pair;
-                        }
-                        break;
-
-                    case AgeDifference.Furthest:
-                        if(pair.AgeDifference > thePair.AgeDifference)
-                        {
-                            thePair = pair;
-                        }
-                        break;
-                }
-            }
-
-            return thePair;
+            return listOfPairs;
         }
     }
 }
