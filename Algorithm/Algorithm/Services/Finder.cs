@@ -23,6 +23,7 @@ namespace Algorithm.Services
         {
             var listOfPairs = GenerateListOfAllPossiblePairsFromPeople();
 
+            //The cases where you return a new object or null should be limited to almost not existing. It's the same principal as the finduser that you did in kata1
             if (listOfPairs.Count < 1)
             {
                 return new Pair();
@@ -40,6 +41,7 @@ namespace Algorithm.Services
                 for (var j = i + 1; j < _people.Count; j++)
                 {
                     var pair = new Pair();
+                    //Maybe this could go in constructor of the pair
                     if (_people[i].BirthDate < _people[j].BirthDate)
                     {
                         pair.YoungerPerson = _people[i];
@@ -51,6 +53,7 @@ namespace Algorithm.Services
                         pair.OlderPerson = _people[i];
                     }
 
+                    //This could be in the property of the domainobject
                     pair.AgeDifference = pair.OlderPerson.BirthDate - pair.YoungerPerson.BirthDate;
                     listOfPairs.Add(pair);
                 }
