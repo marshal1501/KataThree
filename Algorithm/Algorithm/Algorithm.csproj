@@ -40,15 +40,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClosestPairPicker.cs" />
-    <Compile Include="Finder.cs" />
-    <Compile Include="FurthestPairPicker.cs" />
-    <Compile Include="ISorter.cs" />
-    <Compile Include="Pair.cs" />
-    <Compile Include="Enums.cs" />
-    <Compile Include="Person.cs" />
+    <Compile Include="Services\ClosestPairPicker.cs" />
+    <Compile Include="Services\Finder.cs" />
+    <Compile Include="Services\FurthestPairPicker.cs" />
+    <Compile Include="Interfaces\ISorter.cs" />
+    <Compile Include="Domain\Pair.cs" />
+    <Compile Include="Domain\Enums.cs" />
+    <Compile Include="Domain\Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

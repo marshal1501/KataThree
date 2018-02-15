@@ -1,4 +1,4 @@
-﻿namespace Algorithm
+﻿namespace Algorithm.Domain
 {
     public enum AgeDifference
     {

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using Algorithm.Domain;
 
-namespace Algorithm
+namespace Algorithm.Interfaces
 {
     public interface ISorter
     {

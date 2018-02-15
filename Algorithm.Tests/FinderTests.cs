@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using Algorithm.Domain;
+using Algorithm.Services;
 using Xunit;
 
 namespace Algorithm.Tests

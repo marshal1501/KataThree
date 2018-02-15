@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using Algorithm.Domain;
+using Algorithm.Interfaces;
 
-namespace Algorithm
+namespace Algorithm.Services
 {
     public class Finder
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Algorithm
+namespace Algorithm.Domain
 {
     public class Pair
     {
